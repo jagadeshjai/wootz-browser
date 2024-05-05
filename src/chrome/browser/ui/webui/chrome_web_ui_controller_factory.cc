@@ -60,6 +60,7 @@
 #include "chrome/browser/ui/webui/signin_internals_ui.h"
 #include "chrome/browser/ui/webui/suggest_internals/suggest_internals_ui.h"
 #include "chrome/browser/ui/webui/sync_internals/sync_internals_ui.h"
+#include "chrome/browser/ui/webui/throttle/throttle_ui.h"
 #include "chrome/browser/ui/webui/translate_internals/translate_internals_ui.h"
 #include "chrome/browser/ui/webui/usb_internals/usb_internals_ui.h"
 #include "chrome/browser/ui/webui/user_actions/user_actions_ui.h"
@@ -838,6 +839,10 @@ WebUIFactoryFunction GetWebUIFactoryFunction(WebUI* web_ui,
           privacy_sandbox::kPrivacySandboxInternalsDevUI) &&
       url.host_piece() == chrome::kChromeUIPrivacySandboxInternalsHost) {
     return &NewWebUI<privacy_sandbox_internals::PrivacySandboxInternalsUI>;
+  }
+
+  if (url.host_piece() == chrome::kChromeUIThrottleHost) {
+    return &NewWebUI<ThrottleUI>;
   }
 
   return nullptr;
